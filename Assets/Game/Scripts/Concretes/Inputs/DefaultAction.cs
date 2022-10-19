@@ -35,6 +35,15 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftRightRotate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""88af4fd6-5e05-4df7-87b4-2e94a5571ed1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,39 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
                     ""action"": ""Forceup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""c192d990-7c3e-40ac-8b8e-ba8461aedea3"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRightRotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""34161163-7200-4d7e-8856-64e7d0be5208"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRightRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8e87a49a-396d-4d56-b370-fa5c9911ada5"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRightRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -57,6 +99,7 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
         // Rocket
         m_Rocket = asset.FindActionMap("Rocket", throwIfNotFound: true);
         m_Rocket_Forceup = m_Rocket.FindAction("Forceup", throwIfNotFound: true);
+        m_Rocket_LeftRightRotate = m_Rocket.FindAction("LeftRightRotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,11 +160,13 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Rocket;
     private IRocketActions m_RocketActionsCallbackInterface;
     private readonly InputAction m_Rocket_Forceup;
+    private readonly InputAction m_Rocket_LeftRightRotate;
     public struct RocketActions
     {
         private @DefaultAction m_Wrapper;
         public RocketActions(@DefaultAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Forceup => m_Wrapper.m_Rocket_Forceup;
+        public InputAction @LeftRightRotate => m_Wrapper.m_Rocket_LeftRightRotate;
         public InputActionMap Get() { return m_Wrapper.m_Rocket; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -134,6 +179,9 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
                 @Forceup.started -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceup;
                 @Forceup.performed -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceup;
                 @Forceup.canceled -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceup;
+                @LeftRightRotate.started -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRightRotate;
+                @LeftRightRotate.performed -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRightRotate;
+                @LeftRightRotate.canceled -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRightRotate;
             }
             m_Wrapper.m_RocketActionsCallbackInterface = instance;
             if (instance != null)
@@ -141,6 +189,9 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
                 @Forceup.started += instance.OnForceup;
                 @Forceup.performed += instance.OnForceup;
                 @Forceup.canceled += instance.OnForceup;
+                @LeftRightRotate.started += instance.OnLeftRightRotate;
+                @LeftRightRotate.performed += instance.OnLeftRightRotate;
+                @LeftRightRotate.canceled += instance.OnLeftRightRotate;
             }
         }
     }
@@ -148,5 +199,6 @@ public partial class @DefaultAction : IInputActionCollection2, IDisposable
     public interface IRocketActions
     {
         void OnForceup(InputAction.CallbackContext context);
+        void OnLeftRightRotate(InputAction.CallbackContext context);
     }
 }

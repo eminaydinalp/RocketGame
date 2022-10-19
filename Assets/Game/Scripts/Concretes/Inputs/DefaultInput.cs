@@ -8,6 +8,7 @@ namespace Game.Scripts.Concretes.Inputs
         private DefaultAction _input;
 
         public bool isForceUp { get; private set; }
+        public float leftRightValue { get; set; }
         public DefaultInput()
         {
             _input = new DefaultAction();
@@ -15,10 +16,16 @@ namespace Game.Scripts.Concretes.Inputs
             
             _input.Rocket.Forceup.performed += ForceupOnperformed;
 
-            _input.Rocket.Forceup.canceled += context => isForceUp = context.ReadValueAsButton();  //Eğer pass through değilde button yapsaydık bunu da eklememiz gerekirdi.
+            //_input.Rocket.Forceup.canceled += context => isForceUp = context.ReadValueAsButton();  //Eğer pass through değilde button yapsaydık bunu da eklememiz gerekirdi.
             // çünkü isForceUP false olmazdı. pass through adeta update gibi eğer basılmıyorsa kendiliğinden false yapıyor.
-
+            
+            _input.Rocket.LeftRightRotate.performed += LeftRightRotateOnperformed;
             _input.Enable();
+        }
+
+        private void LeftRightRotateOnperformed(InputAction.CallbackContext obj)
+        {
+            leftRightValue = obj.ReadValue<float>();
         }
 
         private void ForceupOnperformed(InputAction.CallbackContext obj)
