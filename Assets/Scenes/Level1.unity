@@ -199,6 +199,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8638879040459468172, guid: f43208570899ddc49ac4f75f44f7104a, type: 3}
   m_PrefabInstance: {fileID: 8638879040090562327}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &896091879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8267925946435551753, guid: 22ef25ef0296a314db5a52efd3c49b05, type: 3}
+  m_PrefabInstance: {fileID: 2958901780389771079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &896091883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896091879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1fb7213613fbd4e834e0017169c882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFuel: 100
+  currentFuel: 0
+  decreaseValue: 0.2
+  increaseValue: 0.1
+  particleSystemFuel: {fileID: 2027603029}
 --- !u!4 &963194228 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9097478499104224780, guid: 9b3d1f4c198997045b036abfc37fb30e, type: 3}
@@ -401,6 +423,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &2027603029 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2958901780444097227, guid: 22ef25ef0296a314db5a52efd3c49b05, type: 3}
+  m_PrefabInstance: {fileID: 2958901780389771079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2045098846
 PrefabInstance:
   m_ObjectHideFlags: 0
