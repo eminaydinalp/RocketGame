@@ -1,4 +1,5 @@
 using System;
+using Game.Scripts.Concretes.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ namespace Game.Scripts.Concretes.Controllers
 
             if (playerController != null)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameManager.Instance.TriggerGameOverEvent();
             }
         }
     }

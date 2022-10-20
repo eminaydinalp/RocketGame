@@ -1,3 +1,4 @@
+using Game.Scripts.Concretes.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ namespace Game.Scripts.Concretes.Inputs
 
         public bool isForceUp { get; private set; }
         public float leftRightValue { get; set; }
+        
         public DefaultInput()
         {
             _input = new DefaultAction();
@@ -21,6 +23,8 @@ namespace Game.Scripts.Concretes.Inputs
             
             _input.Rocket.LeftRightRotate.performed += LeftRightRotateOnperformed;
             _input.Enable();
+
+            GameManager.Instance.OnGameOver += DisableInput;
         }
 
         private void LeftRightRotateOnperformed(InputAction.CallbackContext obj)
@@ -31,6 +35,13 @@ namespace Game.Scripts.Concretes.Inputs
         private void ForceupOnperformed(InputAction.CallbackContext obj)
         {
             isForceUp = obj.ReadValueAsButton();
+        }
+
+        private void DisableInput()
+        {
+            leftRightValue = 0;
+            _input.Disable();
+            GameManager.Instance.OnGameOver -= DisableInput;
         }
     }
 }

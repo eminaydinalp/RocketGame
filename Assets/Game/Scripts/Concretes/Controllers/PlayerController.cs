@@ -1,5 +1,6 @@
 using System;
 using Game.Scripts.Concretes.Inputs;
+using Game.Scripts.Concretes.Managers;
 using Game.Scripts.Concretes.Movements;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace Game.Scripts.Concretes.Controllers
         [SerializeField] private float turnSpeed;
 
         private bool _isCanForce;
+        private bool _isCanMove;
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -26,8 +28,24 @@ namespace Game.Scripts.Concretes.Controllers
             _fuel = GetComponent<Fuel>();
         }
 
+        private void Start()
+        {
+            _isCanMove = true;
+        }
+
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameOver += NotCanMove;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameOver -= NotCanMove;
+        }
+
         private void Update()
         {
+            if(!_isCanMove) return;
             if (_input.isForceUp && !_fuel.isFuelEmpty)
             {
                 _isCanForce = true;
@@ -43,8 +61,16 @@ namespace Game.Scripts.Concretes.Controllers
 
         private void FixedUpdate()
         {
-           _mover.Moveup(_isCanForce);
+            if (!_isCanMove) return;
+            
+            _mover.Moveup(_isCanForce);
            _rotator.RotateRightLeft(turnSpeed, _input.leftRightValue);
+        }
+
+        private void NotCanMove()
+        {
+            _isCanForce = false;
+            _isCanMove = false;
         }
     }
 }

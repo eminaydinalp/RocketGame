@@ -1,4 +1,5 @@
 using System;
+using Game.Scripts.Concretes.Managers;
 using UnityEngine;
 
 namespace Game.Scripts.Concretes.Movements
@@ -15,6 +16,16 @@ namespace Game.Scripts.Concretes.Movements
 
         public bool isFuelEmpty => currentFuel < 1;
 
+        private void OnEnable()
+        {
+            GameManager.Instance.OnGameOver += StopFuelParticle;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameOver -= StopFuelParticle;
+        }
+
         private void Start()
         {
             currentFuel = maxFuel;
@@ -28,7 +39,7 @@ namespace Game.Scripts.Concretes.Movements
 
             if (particleSystemFuel.isStopped)
             {
-                particleSystemFuel.Play();
+                StartFuelParticle();
             }
         }
 
@@ -40,13 +51,23 @@ namespace Game.Scripts.Concretes.Movements
 
             if (particleSystemFuel.isPlaying)
             {
-                particleSystemFuel.Stop();
+                StopFuelParticle();
             }
         }
 
         private void ClampFuel()
         {
             currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
+        }
+
+        private void StopFuelParticle()
+        {
+            particleSystemFuel.Stop();
+        }
+
+        private void StartFuelParticle()
+        {
+            particleSystemFuel.Play();
         }
     }
 }

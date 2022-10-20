@@ -1,4 +1,5 @@
 using System;
+using Game.Scripts.Concretes.Managers;
 using UnityEngine;
 
 namespace Game.Scripts.Concretes.Controllers
@@ -19,6 +20,10 @@ namespace Game.Scripts.Concretes.Controllers
             {
                 finishLightsParticle.SetActive(true);
                 finishFiresParticle.SetActive(true);
+            }
+            else
+            {
+                GameManager.Instance.TriggerGameOverEvent();
             }
         }
     }
