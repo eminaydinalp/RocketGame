@@ -42,7 +42,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9150943, g: 0.86773866, b: 0.047481313, a: 1}
   m_Intensity: 5.98
   m_Range: 1.64
   m_SpotAngle: 30
@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 838336220001714818}
   - component: {fileID: 8649407649729690224}
   - component: {fileID: 6261962033228722886}
+  - component: {fileID: 4236051685418953431}
   m_Layer: 0
   m_Name: StartFloor
   m_TagString: Untagged
@@ -189,3 +190,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4236051685418953431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328189846371439779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c50df280c2cba04c80013e1b27dd221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
