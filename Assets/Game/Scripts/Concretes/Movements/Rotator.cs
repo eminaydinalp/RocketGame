@@ -6,24 +6,24 @@ namespace Game.Scripts.Concretes.Movements
 {
     public class Rotator
     {
-        private Rigidbody _rigidbody;
         private PlayerController _playerController;
+
+        private float zRotation;
         public Rotator(PlayerController playerController)
         {
             _playerController = playerController;
-            _rigidbody = _playerController.GetComponent<Rigidbody>();
         }
 
         public void RotateRightLeft(float turnSpeed, float leftRightValue)
         {
-            /*if (_input.leftRightValue == 0)
+            if (leftRightValue == 0)
             {
-                _rigidbody.freezeRotation = true;
+                zRotation = Mathf.Lerp(_playerController.transform.rotation.z,
+                    leftRightValue, 0.01f * Time.fixedDeltaTime);
+                
+                _playerController.transform.rotation = Quaternion.Euler(0, 0, zRotation);
             }
-            else
-            {
-                _rigidbody.freezeRotation = false;
-            }*/
+            
             _playerController.transform.Rotate(Vector3.back * (Time.deltaTime * turnSpeed * leftRightValue));
         }
 
