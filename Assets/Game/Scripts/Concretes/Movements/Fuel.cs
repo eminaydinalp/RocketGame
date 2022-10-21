@@ -16,6 +16,8 @@ namespace Game.Scripts.Concretes.Movements
 
         public bool isFuelEmpty => currentFuel < 1;
 
+        public float CurrentFuel => currentFuel / maxFuel;
+
         private void OnEnable()
         {
             GameManager.Instance.OnGameOver += StopFuelParticle;

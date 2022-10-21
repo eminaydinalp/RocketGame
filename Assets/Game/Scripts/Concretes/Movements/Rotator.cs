@@ -18,12 +18,13 @@ namespace Game.Scripts.Concretes.Movements
         {
             if (leftRightValue == 0)
             {
-                zRotation = Mathf.Lerp(_playerController.transform.rotation.z,
+                zRotation = _playerController.transform.rotation.z;
+                zRotation = Mathf.Lerp(zRotation,
                     leftRightValue, 0.01f * Time.fixedDeltaTime);
                 
                 _playerController.transform.rotation = Quaternion.Euler(0, 0, zRotation);
             }
-            
+
             _playerController.transform.Rotate(Vector3.back * (Time.deltaTime * turnSpeed * leftRightValue));
         }
 

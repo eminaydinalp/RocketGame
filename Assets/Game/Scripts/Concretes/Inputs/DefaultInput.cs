@@ -30,6 +30,10 @@ namespace Game.Scripts.Concretes.Inputs
         private void LeftRightRotateOnperformed(InputAction.CallbackContext obj)
         {
             leftRightValue = obj.ReadValue<float>();
+
+            leftRightValue = Mathf.Clamp(leftRightValue, -1, 1);
+            Debug.Log(leftRightValue);
+
         }
 
         private void ForceupOnperformed(InputAction.CallbackContext obj)

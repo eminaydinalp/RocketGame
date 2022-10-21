@@ -1,11 +1,12 @@
 using System;
+using Game.Scripts.Concretes.Controllers;
 using Game.Scripts.Concretes.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Game.Scripts.Concretes.Controllers
+namespace Game.Scripts.Abstracts
 {
-    public class WallController : MonoBehaviour
+    public abstract class WallController : MonoBehaviour
     {
         private void OnCollisionEnter(Collision collision)
         {
@@ -16,5 +17,7 @@ namespace Game.Scripts.Concretes.Controllers
                 GameManager.Instance.TriggerGameOverEvent();
             }
         }
+        
+        
     }
 }
