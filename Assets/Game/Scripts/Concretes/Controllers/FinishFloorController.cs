@@ -14,12 +14,14 @@ namespace Game.Scripts.Concretes.Controllers
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             
-            if(playerController == null) return;
+            if(playerController == null || !playerController.IsCanMove) return;
 
             if (collision.GetContact(0).normal.y == contactPointY)
             {
                 finishLightsParticle.SetActive(true);
                 finishFiresParticle.SetActive(true);
+                
+                GameManager.Instance.TriggerSucceedEvent();
             }
             else
             {

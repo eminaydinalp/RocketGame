@@ -19,6 +19,8 @@ namespace Game.Scripts.Concretes.Controllers
 
         private bool _isCanForce;
         private bool _isCanMove;
+
+        public bool IsCanMove => _isCanMove;
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -36,11 +38,13 @@ namespace Game.Scripts.Concretes.Controllers
         private void OnEnable()
         {
             GameManager.Instance.OnGameOver += NotCanMove;
+            GameManager.Instance.OnSucceed += NotCanMove;
         }
 
         private void OnDisable()
         {
             GameManager.Instance.OnGameOver -= NotCanMove;
+            GameManager.Instance.OnSucceed -= NotCanMove;
         }
 
         private void Update()
@@ -61,8 +65,6 @@ namespace Game.Scripts.Concretes.Controllers
 
         private void FixedUpdate()
         {
-            if (!_isCanMove) return;
-            
             _mover.Moveup(_isCanForce);
            _rotator.RotateRightLeft(turnSpeed, _input.leftRightValue);
         }

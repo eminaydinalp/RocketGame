@@ -11,7 +11,7 @@ namespace Game.Scripts.Concretes.Controllers
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
 
-            if (playerController != null)
+            if (playerController != null && playerController.IsCanMove)
             {
                 GameManager.Instance.TriggerGameOverEvent();
             }
