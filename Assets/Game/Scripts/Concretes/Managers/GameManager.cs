@@ -1,28 +1,20 @@
 using System;
 using System.Collections;
+using Game.Scripts.Abstracts.Unitilies;
+using Game.Scripts.Concretes.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Concretes.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
         public Action OnGameOver;
         public Action OnSucceed;
-        public static GameManager Instance { get; private set; }
-
 
         private void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            SingletonThisGameObject(this);
         }
 
         public void TriggerGameOverEvent()
@@ -43,6 +35,8 @@ namespace Game.Scripts.Concretes.Managers
         private IEnumerator LoadLevelSceneAsync(int levelIndex)
         {
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + levelIndex);
+            SoundManager.Instance.StopSound(Consts.MenuMainClipName);
+            SoundManager.Instance.PlaySound(Consts.GameMainClipName);
         }
         
         public void LoadMenuScene()
@@ -53,6 +47,8 @@ namespace Game.Scripts.Concretes.Managers
         private IEnumerator LoadMenuSceneAsync()
         {
             yield return SceneManager.LoadSceneAsync("Menu");
+            SoundManager.Instance.StopSound(Consts.GameMainClipName);
+            SoundManager.Instance.PlaySound(Consts.MenuMainClipName);
         }
 
         public void Exit()

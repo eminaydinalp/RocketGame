@@ -11,11 +11,13 @@ namespace Game.Scripts.Concretes.Controllers
         private Rigidbody _rigidbody;
         private DefaultInput _input;
         private Mover _mover;
+        private Mover _mover2;
         private Rotator _rotator;
         private Fuel _fuel;
 
         [SerializeField] private float force;
         [SerializeField] private float turnSpeed;
+        [SerializeField] private float turnMaxAngle;
 
         private bool _isCanForce;
         private bool _isCanMove;
@@ -65,8 +67,9 @@ namespace Game.Scripts.Concretes.Controllers
 
         private void FixedUpdate()
         {
+            //_mover.Moveup(_isCanForce);
             _mover.Moveup(_isCanForce);
-           _rotator.RotateRightLeft(turnSpeed, _input.leftRightValue);
+           _rotator.RotateRightLeft(turnSpeed, _input.leftRightValue, turnMaxAngle);
         }
 
         private void NotCanMove()

@@ -1,5 +1,6 @@
 using System;
 using Game.Scripts.Concretes.Managers;
+using Game.Scripts.Concretes.Utilities;
 using UnityEngine;
 
 namespace Game.Scripts.Concretes.Movements
@@ -21,11 +22,13 @@ namespace Game.Scripts.Concretes.Movements
         private void OnEnable()
         {
             GameManager.Instance.OnGameOver += StopFuelParticle;
+            GameManager.Instance.OnGameOver += StopRocketSound;
         }
 
         private void OnDisable()
         {
             GameManager.Instance.OnGameOver -= StopFuelParticle;
+            GameManager.Instance.OnGameOver -= StopRocketSound;
         }
 
         private void Start()
@@ -43,6 +46,8 @@ namespace Game.Scripts.Concretes.Movements
             {
                 StartFuelParticle();
             }
+            
+            SoundManager.Instance.PlaySound(Consts.RocketClipName);
         }
 
         public void IncreaseFuel()
@@ -55,6 +60,8 @@ namespace Game.Scripts.Concretes.Movements
             {
                 StopFuelParticle();
             }
+            
+            SoundManager.Instance.StopSound(Consts.RocketClipName);
         }
 
         private void ClampFuel()
@@ -70,6 +77,11 @@ namespace Game.Scripts.Concretes.Movements
         private void StartFuelParticle()
         {
             particleSystemFuel.Play();
+        }
+
+        private void StopRocketSound()
+        {
+            SoundManager.Instance.StopSound(Consts.RocketClipName);
         }
     }
 }

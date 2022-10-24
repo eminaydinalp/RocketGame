@@ -14,18 +14,11 @@ namespace Game.Scripts.Concretes.Movements
             _playerController = playerController;
         }
 
-        public void RotateRightLeft(float turnSpeed, float leftRightValue)
+        public void RotateRightLeft(float turnSpeed, float leftRightValue, float turnMaxAngle)
         {
-            if (leftRightValue == 0)
-            {
-                zRotation = _playerController.transform.rotation.z;
-                zRotation = Mathf.Lerp(zRotation,
-                    leftRightValue, 0.01f * Time.fixedDeltaTime);
-                
-                _playerController.transform.rotation = Quaternion.Euler(0, 0, zRotation);
-            }
-
-            _playerController.transform.Rotate(Vector3.back * (Time.deltaTime * turnSpeed * leftRightValue));
+            _playerController.transform.rotation = Quaternion.Lerp(_playerController.transform.rotation, 
+                Quaternion.Euler(0, 0, -1 * leftRightValue * turnMaxAngle), 
+                turnSpeed * Time.deltaTime);
         }
 
     }

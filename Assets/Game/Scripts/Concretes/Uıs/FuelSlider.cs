@@ -1,7 +1,5 @@
-using System;
 using Game.Scripts.Concretes.Movements;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace Game.Scripts.Concretes.Uıs

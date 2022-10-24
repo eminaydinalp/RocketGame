@@ -1,3 +1,4 @@
+using Game.Scripts.Concretes.Controllers;
 using Game.Scripts.Concretes.Inputs;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Game.Scripts.Concretes.Movements
             _rigidbody = rigidbody;
             _force = force;
         }
+        
 
         public void Moveup(bool isForceup)
         {
@@ -21,6 +23,7 @@ namespace Game.Scripts.Concretes.Movements
                 _rigidbody.AddRelativeForce(Vector3.up * (Time.deltaTime * _force));
             }
         }
+        
 
     }
 }

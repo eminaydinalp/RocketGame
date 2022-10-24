@@ -1709,6 +1709,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 896091883, guid: 22ef25ef0296a314db5a52efd3c49b05, type: 3}
+      propertyPath: maxFuel
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5857377262011266877, guid: 22ef25ef0296a314db5a52efd3c49b05, type: 3}
       propertyPath: m_RootOrder
       value: 0
