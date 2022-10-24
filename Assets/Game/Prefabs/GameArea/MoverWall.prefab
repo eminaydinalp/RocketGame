@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoverWall
       objectReference: {fileID: 0}
+    - target: {fileID: 8502643514704851569, guid: 2e8cab95a614ff74f8c5f9954a826cce, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f2f39ae9facbea43ac7f6da5b21a916, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e8cab95a614ff74f8c5f9954a826cce, type: 3}
 --- !u!1 &9034208355595441528 stripped
@@ -76,3 +80,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   factor: 0
+  duration: 0
